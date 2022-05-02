@@ -1,27 +1,25 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, send_from_directory
 
-from main.main_views import main_blueprint
-from loader.loader_views import loader_blueprint
+from flask import Flask, request, render_template
 
-from constant import *
+# Импортируем блюпринты из их пакетов
+from constant import IMAGES_FOLDER
+from main.main_views import profile_blueprint
+from loader.loader_views import catalog_blueprint
 
 app = Flask(__name__)
 
-# Регистрируем блюпринты
-app.register_blueprint(main_blueprint, url_prefix="/")
-app.register_blueprint(loader_blueprint)
+# Регистрируем первый блюпринт
+app.register_blueprint(profile_blueprint)
+# И второй тоже регистрируем
+app.register_blueprint(catalog_blueprint)
 
 
-# Разрешаем доступ к картинкам (показ после загрузки)
-@app.route(f'/post/loaded/<path:path>/')
+@app.route(f'/upload/<path:path>/')
 def img_dir(path):
-    return send_from_directory(IMAGES_FOLDER, path)  # СЛЕЕЕЕШ!!!!
-
-
-# Разрешаем доступ к картинкам (показ картинок с диска в поле поиска и в ленте)
-@app.route(f'/search/<path:path>/')
-def img_dir2(path):
     return send_from_directory(IMAGES_FOLDER, path)
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
+

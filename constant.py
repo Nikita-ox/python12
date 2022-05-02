@@ -1,3 +1,3 @@
-JSON_FILE = "posts.json"
-IMAGES_FOLDER = "uploads/images/"
-ALLOWED_IMG_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+JSON_FILE = "data/posts.json"
+IMAGES_FOLDER = "uploads"
+ALLOWED_IMG_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'JPG'}
